@@ -367,7 +367,7 @@ dependencies = [
 [[package]]
 name = "win-toast-sys"
 version = "0.1.0"
-source = "git+https://github.com/SpiralP/rust-win-toast-sys.git#584201fc1ed37bfc2db6f9ec1b4b5044198c4eaf"
+source = "git+https://github.com/SpiralP/rust-win-toast-sys.git#a0ac1f5257ac45288f6dd620387225354e328ace"
 dependencies = [
  "bindgen 0.53.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "cc 1.0.50 (registry+https://github.com/rust-lang/crates.io-index)",
