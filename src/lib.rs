@@ -26,20 +26,22 @@ pub struct WinToast {
 }
 impl WinToast {
   pub fn initialize(app_name: &str, company_name: &str, product_name: &str) -> Result<Self, Error> {
+    unsafe {
+      if !WinToast_isCompatible() {
+        return Err(WinToastError::Incompatible.into());
+      }
+    }
+
     let aumi = format!("{}.{}", company_name, product_name);
 
     let win_toast = Self {
       app_name: WideCString::from_str(app_name)?,
       aumi: WideCString::from_str(aumi)?,
 
-      inner: unsafe { WinToast_instance() },
+      inner: unsafe { WinToast_new() },
     };
 
     unsafe {
-      if !WinToast_isCompatible() {
-        return Err(WinToastError::Incompatible.into());
-      }
-
       WinToast_setAppName(win_toast.inner, win_toast.app_name.as_ptr());
 
       WinToast_setAppUserModelId(win_toast.inner, win_toast.aumi.as_ptr());
@@ -70,14 +72,16 @@ impl WinToast {
 }
 // I keep getting (exit code: 0xc0000374, STATUS_HEAP_CORRUPTION)
 // when trying to use "new", on delete
-// impl Drop for WinToast {
-//   fn drop(&mut self) {
-//     println!("drop toast");
-//     unsafe {
-//       WinToast_delete(self.inner);
-//     }
-//   }
-// }
+// https://github.com/mohabouje/WinToast/issues/44
+// This only happens when you exit before waiting for the notification
+// to be activated/dismissed/timedout.
+impl Drop for WinToast {
+  fn drop(&mut self) {
+    unsafe {
+      WinToast_delete(self.inner);
+    }
+  }
+}
 
 pub struct WinToastTemplate {
   inner: *mut c_void,
