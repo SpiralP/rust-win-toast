@@ -5,3 +5,4 @@ authors = ["SpiralP <spiral.palmer@gmail.com>"]
 edition = "2018"
 
 [dependencies]
+win-toast-sys = { git = "https://github.com/SpiralP/rust-win-toast-sys.git" }
