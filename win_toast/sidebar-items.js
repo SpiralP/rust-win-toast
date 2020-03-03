@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["WinToast",""],["WinToastHandler",""],["WinToastTemplate",""]],"type":[["ToastId",""]]});
+initSidebarItems({"enum":[["IWinToastHandler_WinToastDismissalReason",""],["WinToastTemplate_TextField",""],["WinToastTemplate_WinToastTemplateType",""]],"struct":[["WinToast",""],["WinToastHandler",""],["WinToastTemplate",""]],"type":[["ToastId",""]]});
