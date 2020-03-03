@@ -1,1 +1,1 @@
-initSidebarItems({});
+initSidebarItems({"struct":[["WinToast",""],["WinToastHandler",""],["WinToastTemplate",""]],"type":[["ToastId",""]]});
