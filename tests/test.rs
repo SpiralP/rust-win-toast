@@ -25,4 +25,7 @@ fn it_works() {
   let handler = WinToastHandler::new(activated, dismissed, failed);
 
   win_toast.show_toast(&template, &handler).unwrap();
+
+  // don't exit program so quickly!
+  std::thread::sleep(std::time::Duration::from_millis(500));
 }
