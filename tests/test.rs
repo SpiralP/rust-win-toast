@@ -57,6 +57,11 @@ fn it_works() {
     .set_text_field("second line", WinToastTemplate_TextField::SecondLine)
     .unwrap();
 
+  template
+    .set_activation_type(WinToastTemplate_ActivationType::Protocol)
+    .unwrap();
+  template.set_launch("ms-settings:windowsupdate").unwrap();
+
   let handler = WinToastHandler::new(activated, dismissed, failed);
 
   win_toast.show_toast(&template, &handler).unwrap();

@@ -3,8 +3,8 @@ use std::ffi::c_void;
 use widestring::WideCString;
 use win_toast_sys::*;
 pub use win_toast_sys::{
-  IWinToastHandler_WinToastDismissalReason, WinToastTemplate_TextField,
-  WinToastTemplate_WinToastTemplateType,
+  IWinToastHandler_WinToastDismissalReason, WinToastTemplate_ActivationType,
+  WinToastTemplate_TextField, WinToastTemplate_WinToastTemplateType,
 };
 
 pub type ToastId = INT64;
@@ -110,6 +110,30 @@ impl WinToastTemplate {
 
     // keep it alive
     self.c_strings.push(text);
+
+    Ok(())
+  }
+
+  pub fn set_activation_type(
+    &mut self,
+    activation_type: WinToastTemplate_ActivationType,
+  ) -> Result<(), Error> {
+    unsafe {
+      WinToastTemplate_setActivationType(self.inner, activation_type);
+    }
+
+    Ok(())
+  }
+
+  pub fn set_launch(&mut self, launch: &str) -> Result<(), Error> {
+    let launch = WideCString::from_str(launch)?;
+
+    unsafe {
+      WinToastTemplate_setLaunch(self.inner, launch.as_ptr());
+    }
+
+    // keep it alive
+    self.c_strings.push(launch);
 
     Ok(())
   }
