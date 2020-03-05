@@ -9,5 +9,10 @@ failure = "0.1.6"
 widestring = "0.4.0"
 win-toast-sys = { git = "https://github.com/SpiralP/rust-win-toast-sys.git" }
 
+
+# remove this when we update failure
+quote = "=1.0.2"
+
+
 [dev-dependencies]
 lazy_static = "1.4.0"
