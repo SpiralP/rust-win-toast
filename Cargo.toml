@@ -2,11 +2,11 @@
 name = "win-toast"
 version = "0.1.0"
 authors = ["SpiralP <spiral.palmer@gmail.com>"]
-edition = "2018"
+edition = "2021"
 
 [dependencies]
 failure = "0.1"
-widestring = "0.5"
+widestring = "1"
 win-toast-sys = { git = "https://github.com/SpiralP/rust-win-toast-sys.git" }
 
 [dev-dependencies]
